@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "timestamp": "23/09/2026 18:06:19",
+  "summary": {
+    "total_volume_hl": 1637.92,
+    "total_pedidos": 1202,
+    "total_clientes": 686,
+    "total_produtos": 218,
+    "total_cidades": 26,
+    "total_quantidade": 31401,
+    "total_linhas": 4245,
+    "total_peso_kg": 268781.74,
+    "total_peso_ton": 268.78,
+    "total_pallets": 220.35
+  },
+  "files": [
+    "BUFFER.csv",
+    "01.11.csv"
+  ]
+}
