@@ -1,5 +1,7 @@
 import os
 import json
+import threading
+import time
 from flask import Flask, send_from_directory, jsonify, request
 import drive_sync
 import process_data
@@ -7,8 +9,55 @@ import generate_dashboard
 
 app = Flask(__name__, static_folder='.')
 
+_sync_lock = threading.Lock()
+_last_auto_sync = 0
+AUTO_SYNC_INTERVAL = 300  # Intervalo de 5 minutos entre verificações automáticas no Drive
+
+def trigger_auto_sync(force=False):
+    global _last_auto_sync
+    now = time.time()
+    if not force and (now - _last_auto_sync < AUTO_SYNC_INTERVAL):
+        return
+    
+    def _worker():
+        global _last_auto_sync
+        if not _sync_lock.acquire(blocking=False):
+            return
+        try:
+            _last_auto_sync = time.time()
+            print("[Auto-Sync] Verificando arquivos mais recentes no Google Drive...")
+            res = drive_sync.sync_from_drive()
+            if res.get('success'):
+                print("[Auto-Sync] Painel atualizado com sucesso a partir do Google Drive!")
+            else:
+                print(f"[Auto-Sync] Nota: {res.get('error')}")
+        except Exception as e:
+            print(f"[Auto-Sync] Erro: {e}")
+        finally:
+            _sync_lock.release()
+
+    t = threading.Thread(target=_worker, daemon=True)
+    t.start()
+
+def check_local_update():
+    """Garante que qualquer alteração direta em BUFFER.csv seja refletida no dash imediatamente."""
+    try:
+        if os.path.exists('BUFFER.csv') and os.path.exists('data.json'):
+            b_mtime = os.path.getmtime('BUFFER.csv')
+            d_mtime = os.path.getmtime('data.json')
+            if b_mtime > d_mtime:
+                process_data.run_process()
+                generate_dashboard.run_generate()
+    except Exception as e:
+        pass
+
+# Dispara sincronização inicial em segundo plano ao iniciar o servidor (ex: ao acordar no Render)
+trigger_auto_sync(force=True)
+
 @app.route('/')
 def index():
+    check_local_update()
+    trigger_auto_sync(force=False)
     if os.path.exists('dashboard.html'):
         return send_from_directory('.', 'dashboard.html')
     elif os.path.exists('index.html'):
@@ -17,16 +66,21 @@ def index():
 
 @app.route('/dashboard.html')
 def dashboard_html():
+    check_local_update()
+    trigger_auto_sync(force=False)
     return send_from_directory('.', 'dashboard.html')
 
 @app.route('/data.json')
 def get_data_json():
+    check_local_update()
     if os.path.exists('data.json'):
         return send_from_directory('.', 'data.json', mimetype='application/json')
     return jsonify({"error": "data.json não encontrado"}), 404
 
 @app.route('/api/status', methods=['GET'])
 def api_status():
+    check_local_update()
+    trigger_auto_sync(force=False)
     last_sync = {}
     if os.path.exists('last_sync.json'):
         try:

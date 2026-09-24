@@ -9,6 +9,8 @@ def run_generate():
     clients = d['clients']
     cities = d['cities']
     clients_lookup = d.get('clients_lookup', {})
+    data_entrega = summary.get('data_entrega', 'Não informada')
+    ultima_atualizacao = summary.get('ultima_atualizacao', summary.get('timestamp', 'Recente'))
 
     html_content = f'''<!DOCTYPE html>
 <html lang="pt-BR">
@@ -718,7 +720,11 @@ def run_generate():
       <div class="header-actions">
         <div class="pill-session">
           <span class="pill-dot"></span>
-          <span id="session-tag">Data de Entrega: 24/09/2026</span>
+          <span id="session-tag">Data de Entrega: {data_entrega}</span>
+        </div>
+        <div class="pill-session" id="pill-update-time" style="font-size:12px; color:var(--muted); font-weight:500;" title="Horário do último processamento/sincronização">
+          <span>🕒 Atualizado:</span>
+          <strong id="session-update-time" style="color:var(--ink-2); font-family:var(--mono);">{ultima_atualizacao}</strong>
         </div>
         <button type="button" id="btn-sync-drive" class="btn-sync" onclick="SPECS.syncDrive()" title="Puxar dados atualizados do Google Drive">
           <svg class="sync-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1163,6 +1169,15 @@ def run_generate():
       renderHero(dados) {{
         const heroVal = document.getElementById('hero-val');
         if (heroVal) heroVal.innerHTML = `${{this.formatBR(dados.summary.total_volume_hl)}} <span>HL</span>`;
+
+        const sessionTag = document.getElementById('session-tag');
+        if (sessionTag && dados.summary && dados.summary.data_entrega) {{
+          sessionTag.innerText = `Data de Entrega: ${{dados.summary.data_entrega}}`;
+        }}
+        const sessionTime = document.getElementById('session-update-time');
+        if (sessionTime && dados.summary && dados.summary.ultima_atualizacao) {{
+          sessionTime.innerText = dados.summary.ultima_atualizacao;
+        }}
       }},
 
       renderKPIs(dados) {{
@@ -1491,18 +1506,21 @@ def run_generate():
 
         try {{
           const res = await fetch('/api/sync', {{ method: 'POST' }});
-          const data = await res.json();
-          if (data.success) {{
+          let data = null;
+          try {{ data = await res.json(); }} catch(e) {{}}
+
+          if (res.ok && data && data.success) {{
             this.showToast('✅ ' + (data.message || 'Dados atualizados com sucesso do Google Drive!'), 'success');
             setTimeout(() => window.location.reload(), 1200);
           }} else {{
-            this.showToast('⚠️ ' + (data.error || 'Erro ao sincronizar do Google Drive.'), 'error');
+            const errMsg = (data && data.error) ? data.error : 'O servidor demorou para responder ou encontrou um erro. Tente novamente em instantes.';
+            this.showToast('⚠️ ' + errMsg, 'error');
             btn.disabled = false;
             btn.classList.remove('syncing');
             text.textContent = 'Atualizar Dados';
           }}
         }} catch (err) {{
-          this.showToast('ℹ️ O botão de sincronização requer o servidor ativo (app.py). Dados locais preservados.', 'info');
+          this.showToast('⚠️ Falha de comunicação com o servidor. Tente novamente.', 'error');
           btn.disabled = false;
           btn.classList.remove('syncing');
           text.textContent = 'Atualizar Dados';
@@ -1525,13 +1543,28 @@ def run_generate():
       }},
 
       async checkSyncStatus() {{
+        if (!window.location.protocol.startsWith('http')) return;
         try {{
           const res = await fetch('/api/status');
           if (res.ok) {{
             const st = await res.json();
-            if (st.last_sync && st.last_sync.timestamp) {{
-              const btn = document.getElementById('btn-sync-drive');
-              if (btn) btn.title = 'Última sincronização do Drive: ' + st.last_sync.timestamp;
+            const btn = document.getElementById('btn-sync-drive');
+            const srvTime = (st.last_sync && st.last_sync.timestamp) || (st.summary && st.summary.ultima_atualizacao);
+            if (srvTime && btn) {{
+              btn.title = 'Última sincronização do Drive: ' + srvTime;
+            }}
+            const curTime = DADOS.summary?.ultima_atualizacao;
+            if (srvTime && curTime && srvTime !== curTime) {{
+              const resData = await fetch('/data.json');
+              if (resData.ok) {{
+                const freshDados = await resData.json();
+                Object.assign(DADOS, freshDados);
+                this.renderHero(DADOS);
+                this.renderKPIs(DADOS);
+                this.renderTables(DADOS);
+                this.initClientSearch(DADOS);
+                this.showToast('✅ Painel sincronizado com a versão mais recente!', 'success');
+              }}
             }}
           }}
         }} catch (e) {{}}

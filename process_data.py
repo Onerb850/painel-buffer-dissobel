@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import os
+import datetime
 
 def parse_num(val):
     if pd.isna(val): return 0.0
@@ -14,12 +15,13 @@ def run_process(base_dir='.'):
     df = pd.read_csv(buf_file, sep=';', encoding='utf-8-sig')
 
     # Regra oficial de Atendimento:
-    # "Soma de todos os itens com situação de atendimento: Atendido, nas situações:
-    # Registrado, Aguardando roteirização, Bloqueado e Aguardando vínculo."
-    situacoes_validas = ['REGISTRADO', 'AGUARDANDO_ROTEIRIZACAO', 'BLOQUEADO', 'AGUARDANDO_VINCULO']
+    # Soma de todos os itens com situação de atendimento: ATENDIDO (100% faturado/confirmado),
+    # em todas as situações operacionais ativas do fluxo logístico (Registrado, Aguardando roteirização,
+    # Aguardando vínculo, Bloqueado, Ordem de Carga, Carregado, Saída CDD, etc.),
+    # excluindo estritamente pedidos cancelados (CANCELADO) e itens anulados (ANULADO).
     df_atendido = df[
         (df['Situação atend. pedido'] == 'ATENDIDO') &
-        (df['Situação pedido'].isin(situacoes_validas))
+        (df['Situação pedido'] != 'CANCELADO')
     ].copy()
 
     df_atendido['quant_num'] = df_atendido['Quant. venda'].apply(parse_num)
@@ -238,6 +240,11 @@ def run_process(base_dir='.'):
             'pedidos': orders
         }
 
+        # Data de entrega e data de atualização dinâmicas
+    datas_entrega = [str(d).strip() for d in df_atendido['Data entrega'].dropna().unique() if str(d).strip()]
+    data_entrega_str = ' / '.join(sorted(datas_entrega)) if datas_entrega else 'Não informada'
+    ultima_atualizacao_str = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+
     data = {
         'summary': {
             'total_volume_hl': total_volume_hl,
@@ -249,7 +256,9 @@ def run_process(base_dir='.'):
             'total_linhas': len(df_atendido),
             'total_peso_kg': total_peso_kg,
             'total_peso_ton': total_peso_ton,
-            'total_pallets': total_pallets
+            'total_pallets': total_pallets,
+            'data_entrega': data_entrega_str,
+            'ultima_atualizacao': ultima_atualizacao_str
         },
         'daily': daily_data,
         'products': products_data,
@@ -265,8 +274,22 @@ def run_process(base_dir='.'):
     except Exception as e:
         pass
 
-    print(f"data.json successfully updated! Peso: {total_peso_kg:,.2f} kg ({total_peso_ton} ton), Pallets: {total_pallets:,.2f}, Lookup Clients: {len(clients_lookup)}")
+    sync_path = os.path.join(base_dir, 'last_sync.json')
+    try:
+        with open(sync_path, 'w', encoding='utf-8') as f:
+            json.dump({
+                'success': True,
+                'timestamp': ultima_atualizacao_str,
+                'data_entrega': data_entrega_str,
+                'summary': data['summary'],
+                'files': ['BUFFER.csv', '01.11.csv']
+            }, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        pass
+
+    print(f"data.json successfully updated! HL: {total_volume_hl} | Pedidos: {total_pedidos} | Clientes: {total_clientes} | Peso: {total_peso_kg:,.2f} kg ({total_peso_ton} ton) | Pallets: {total_pallets:,.2f}")
     return data
 
 if __name__ == '__main__':
     run_process()
+
