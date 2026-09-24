@@ -14,13 +14,12 @@ def run_process(base_dir='.'):
     buf_file = next((f for f in buf_candidates if os.path.exists(f)), 'BUFFER.csv')
     df = pd.read_csv(buf_file, sep=';', encoding='utf-8-sig')
 
-    # Regra oficial de Atendimento:
-    # Soma de todos os itens com situação de atendimento: ATENDIDO (100% faturado/confirmado),
-    # em todas as situações operacionais ativas do fluxo logístico (Registrado, Aguardando roteirização,
-    # Aguardando vínculo, Bloqueado, Ordem de Carga, Carregado, Saída CDD, etc.),
-    # excluindo estritamente pedidos cancelados (CANCELADO) e itens anulados (ANULADO).
+    # Regra oficial de Atendimento (alinhada à Mesa Operacional / Cora):
+    # Soma de todos os itens com situação de atendimento Atendido e Atendido Parcial (volume efetivamente faturado),
+    # em todas as situações operacionais ativas (Registrado, Aguardando roteirização, Bloqueado, Aguardando vínculo,
+    # Ordem de Carga, Carregado, Saída CDD, etc.), excluindo estritamente pedidos cancelados (CANCELADO) e itens anulados (ANULADO).
     df_atendido = df[
-        (df['Situação atend. pedido'] == 'ATENDIDO') &
+        (df['Situação atend. pedido'].isin(['ATENDIDO', 'ATENDIDO_PARCIAL'])) &
         (df['Situação pedido'] != 'CANCELADO')
     ].copy()
 

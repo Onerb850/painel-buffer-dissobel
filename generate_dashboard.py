@@ -761,7 +761,7 @@ def run_generate():
           <div class="hero-label">Volume Total Consolidado</div>
           <div class="hero-number" id="hero-val">0 <span>HL</span></div>
           <div class="badge-delta">
-            <span id="hero-delta">▲ 100% ATENDIDO</span>
+            <span id="hero-delta">▲ ATENDIDOS</span>
             <span id="hero-delta-sub">pedidos faturados e confirmados no buffer</span>
           </div>
         </div>
