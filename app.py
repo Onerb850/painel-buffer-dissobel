@@ -51,8 +51,9 @@ def check_local_update():
     except Exception as e:
         pass
 
-# Dispara sincronização inicial em segundo plano ao iniciar o servidor (ex: ao acordar no Render)
-trigger_auto_sync(force=True)
+# Dispara sincronização inicial em segundo plano apenas se data.json não existir
+if not os.path.exists('data.json'):
+    trigger_auto_sync(force=True)
 
 @app.route('/')
 def index():
@@ -108,8 +109,16 @@ def api_status():
 def api_sync():
     """
     Dispara a sincronização com o Google Drive, baixa as planilhas mais recentes,
-    executa o cálculo e regenera o dashboard.
+    executa o cálculo e regenera o dashboard de forma segura (sem colisão de concorrência).
     """
+    acquired = _sync_lock.acquire(timeout=45)
+    if not acquired:
+        return jsonify({
+            "success": False,
+            "error": "Uma sincronização já está sendo processada no servidor. Aguarde alguns segundos.",
+            "timestamp": time.strftime('%d/%m/%Y %H:%M:%S')
+        }), 429
+
     try:
         result = drive_sync.sync_from_drive()
         if result.get('success'):
@@ -130,6 +139,8 @@ def api_sync():
             "success": False,
             "error": f"Erro interno durante sincronização: {str(e)}"
         }), 500
+    finally:
+        _sync_lock.release()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))

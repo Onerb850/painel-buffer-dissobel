@@ -1,7 +1,6 @@
 {
   "success": true,
-  "timestamp": "24/09/2026 13:25:05",
-  "data_entrega": "24/09/2026",
+  "timestamp": "24/09/2026 14:05:14",
   "summary": {
     "total_volume_hl": 1478.61,
     "total_pedidos": 1172,
@@ -10,14 +9,13 @@
     "total_cidades": 25,
     "total_quantidade": 28683,
     "total_linhas": 4095,
-    "total_peso_kg": 242238.42,
+    "total_peso_kg": 242238.43,
     "total_peso_ton": 242.24,
     "total_pallets": 199.23,
     "data_entrega": "24/09/2026",
-    "ultima_atualizacao": "24/09/2026 13:25:05"
+    "ultima_atualizacao": "24/09/2026 14:05:22"
   },
   "files": [
-    "BUFFER.csv",
-    "01.11.csv"
+    "BUFFER.csv"
   ]
 }

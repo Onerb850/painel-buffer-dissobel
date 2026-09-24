@@ -7,11 +7,11 @@
     "total_cidades": 25,
     "total_quantidade": 28683,
     "total_linhas": 4095,
-    "total_peso_kg": 242238.42,
+    "total_peso_kg": 242238.43,
     "total_peso_ton": 242.24,
     "total_pallets": 199.23,
     "data_entrega": "24/09/2026",
-    "ultima_atualizacao": "24/09/2026 13:25:05"
+    "ultima_atualizacao": "24/09/2026 14:05:22"
   },
   "daily": [
     {
@@ -19,7 +19,7 @@
       "pedidos": 1172,
       "volume_hl": 1478.61,
       "quantidade": 28683.0,
-      "peso_kg": 242238.42,
+      "peso_kg": 242238.43,
       "pallets": 199.23
     }
   ],
@@ -2799,17 +2799,6 @@
       "pallets": 0.73
     },
     {
-      "cod": 7857,
-      "nome": "DEPOSITO SAO PEDRO",
-      "razao": "MARIA DE LOURDES FREITAS CHAVE",
-      "cidade": "CARIRE",
-      "pedidos": 1,
-      "quantidade": 78,
-      "hl": 5.31,
-      "peso_kg": 910.45,
-      "pallets": 0.78
-    },
-    {
       "cod": 24749,
       "nome": "S5 - PRAINHA DO JET",
       "razao": "D C DE MEDEIROS GOMES",
@@ -2819,6 +2808,17 @@
       "hl": 5.31,
       "peso_kg": 957.9,
       "pallets": 0.84
+    },
+    {
+      "cod": 7857,
+      "nome": "DEPOSITO SAO PEDRO",
+      "razao": "MARIA DE LOURDES FREITAS CHAVE",
+      "cidade": "CARIRE",
+      "pedidos": 1,
+      "quantidade": 78,
+      "hl": 5.31,
+      "peso_kg": 910.45,
+      "pallets": 0.78
     },
     {
       "cod": 8576,
@@ -3404,17 +3404,6 @@
       "pallets": 0.46
     },
     {
-      "cod": 13671,
-      "nome": "MERCADINHO CLAUDIO",
-      "razao": "CLAUDIO INACIO SILVA",
-      "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 41,
-      "hl": 2.83,
-      "peso_kg": 565.8,
-      "pallets": 0.46
-    },
-    {
       "cod": 14914,
       "nome": "DEPOSITO O ARTHUR",
       "razao": "ANTONIO MANOEL DOS SANTOS",
@@ -3424,6 +3413,17 @@
       "hl": 2.83,
       "peso_kg": 569.8,
       "pallets": 0.45
+    },
+    {
+      "cod": 13671,
+      "nome": "MERCADINHO CLAUDIO",
+      "razao": "CLAUDIO INACIO SILVA",
+      "cidade": "SOBRAL",
+      "pedidos": 1,
+      "quantidade": 41,
+      "hl": 2.83,
+      "peso_kg": 565.8,
+      "pallets": 0.46
     },
     {
       "cod": 10462,
@@ -4416,17 +4416,6 @@
       "pallets": 0.22
     },
     {
-      "cod": 26360,
-      "nome": "S5 - BAR DO VALDEIR",
-      "razao": "SOCORRO MARIA FREIRE MOREIRA",
-      "cidade": "ALCANTARAS",
-      "pedidos": 4,
-      "quantidade": 35,
-      "hl": 1.47,
-      "peso_kg": 236.51,
-      "pallets": 0.21
-    },
-    {
       "cod": 13595,
       "nome": "S5 -ARMAZEM DA ESQUI",
       "razao": "I.G MOULAO RESTAURANTE LTDA",
@@ -4436,6 +4425,17 @@
       "hl": 1.47,
       "peso_kg": 274.11,
       "pallets": 0.24
+    },
+    {
+      "cod": 26360,
+      "nome": "S5 - BAR DO VALDEIR",
+      "razao": "SOCORRO MARIA FREIRE MOREIRA",
+      "cidade": "ALCANTARAS",
+      "pedidos": 4,
+      "quantidade": 35,
+      "hl": 1.47,
+      "peso_kg": 236.51,
+      "pallets": 0.21
     },
     {
       "cod": 14768,
@@ -4988,6 +4988,17 @@
       "pallets": 0.14
     },
     {
+      "cod": 28385,
+      "nome": "TRS EXPRESS",
+      "razao": "CONVENIENCIAS TRSACODE LTDA",
+      "cidade": "TIANGUA",
+      "pedidos": 3,
+      "quantidade": 29,
+      "hl": 1.15,
+      "peso_kg": 334.33,
+      "pallets": 0.13
+    },
+    {
       "cod": 26999,
       "nome": "DESCUBRA QUASE BAR",
       "razao": "REINALDO DE ALMEIDA SOLSA",
@@ -4997,17 +5008,6 @@
       "hl": 1.15,
       "peso_kg": 204.86,
       "pallets": 0.17
-    },
-    {
-      "cod": 16146,
-      "nome": "BAR DO BAZAN",
-      "razao": "RAIMUNDO NONATO ARAUJO",
-      "cidade": "CAMOCIM",
-      "pedidos": 2,
-      "quantidade": 18,
-      "hl": 1.15,
-      "peso_kg": 220.05,
-      "pallets": 0.18
     },
     {
       "cod": 26918,
@@ -5021,15 +5021,15 @@
       "pallets": 0.12
     },
     {
-      "cod": 28385,
-      "nome": "TRS EXPRESS",
-      "razao": "CONVENIENCIAS TRSACODE LTDA",
-      "cidade": "TIANGUA",
-      "pedidos": 3,
-      "quantidade": 29,
+      "cod": 16146,
+      "nome": "BAR DO BAZAN",
+      "razao": "RAIMUNDO NONATO ARAUJO",
+      "cidade": "CAMOCIM",
+      "pedidos": 2,
+      "quantidade": 18,
       "hl": 1.15,
-      "peso_kg": 334.33,
-      "pallets": 0.13
+      "peso_kg": 220.05,
+      "pallets": 0.18
     },
     {
       "cod": 66611,
@@ -5186,17 +5186,6 @@
       "pallets": 0.17
     },
     {
-      "cod": 28243,
-      "nome": "BRISA DO MAR",
-      "razao": "ISMAEL FERREIRA DO NASCIMENTO",
-      "cidade": "CAMOCIM",
-      "pedidos": 1,
-      "quantidade": 21,
-      "hl": 1.08,
-      "peso_kg": 116.09,
-      "pallets": 0.09
-    },
-    {
       "cod": 867,
       "nome": "BAR DO SILVIO AD",
       "razao": "JOSE AIRTON DE MESQUITA SILVA",
@@ -5206,6 +5195,17 @@
       "hl": 1.08,
       "peso_kg": 191.76,
       "pallets": 0.16
+    },
+    {
+      "cod": 28243,
+      "nome": "BRISA DO MAR",
+      "razao": "ISMAEL FERREIRA DO NASCIMENTO",
+      "cidade": "CAMOCIM",
+      "pedidos": 1,
+      "quantidade": 21,
+      "hl": 1.08,
+      "peso_kg": 116.09,
+      "pallets": 0.09
     },
     {
       "cod": 15345,
@@ -5252,17 +5252,6 @@
       "pallets": 0.15
     },
     {
-      "cod": 12752,
-      "nome": "BARRACA DONA MAZE",
-      "razao": "EDNA MARIA PEREIRA TEIXEIRA",
-      "cidade": "CAMOCIM",
-      "pedidos": 1,
-      "quantidade": 15,
-      "hl": 1.05,
-      "peso_kg": 176.08,
-      "pallets": 0.15
-    },
-    {
       "cod": 15734,
       "nome": "BAR O RUBANI",
       "razao": "RUBANI SOUZA LINHARES",
@@ -5272,6 +5261,17 @@
       "hl": 1.05,
       "peso_kg": 200.37,
       "pallets": 0.17
+    },
+    {
+      "cod": 12752,
+      "nome": "BARRACA DONA MAZE",
+      "razao": "EDNA MARIA PEREIRA TEIXEIRA",
+      "cidade": "CAMOCIM",
+      "pedidos": 1,
+      "quantidade": 15,
+      "hl": 1.05,
+      "peso_kg": 176.08,
+      "pallets": 0.15
     },
     {
       "cod": 17747,
@@ -5725,6 +5725,17 @@
       "pallets": 0.13
     },
     {
+      "cod": 25918,
+      "nome": "BAR DO WILK",
+      "razao": "GABRIEL FERREIRA SILVA",
+      "cidade": "CAMOCIM",
+      "pedidos": 1,
+      "quantidade": 14,
+      "hl": 0.86,
+      "peso_kg": 154.6,
+      "pallets": 0.13
+    },
+    {
       "cod": 11455,
       "nome": "COMERCIAL BETO",
       "razao": "CARLOS ALBERTO MERTINS TOMAS",
@@ -5736,15 +5747,15 @@
       "pallets": 0.08
     },
     {
-      "cod": 25918,
-      "nome": "BAR DO WILK",
-      "razao": "GABRIEL FERREIRA SILVA",
-      "cidade": "CAMOCIM",
+      "cod": 14699,
+      "nome": "ESPETINHO DO JOSIAS",
+      "razao": "OSVANIA RODRIGUES MUNIZ",
+      "cidade": "TIANGUA",
       "pedidos": 1,
       "quantidade": 14,
-      "hl": 0.86,
-      "peso_kg": 154.6,
-      "pallets": 0.13
+      "hl": 0.85,
+      "peso_kg": 129.16,
+      "pallets": 0.11
     },
     {
       "cod": 16624,
@@ -5769,28 +5780,6 @@
       "pallets": 0.13
     },
     {
-      "cod": 24573,
-      "nome": "DEPOSITO TIMBA",
-      "razao": "WILLIAM DE MOURA SILVA",
-      "cidade": "SOBRAL",
-      "pedidos": 3,
-      "quantidade": 12,
-      "hl": 0.85,
-      "peso_kg": 164.4,
-      "pallets": 0.14
-    },
-    {
-      "cod": 14699,
-      "nome": "ESPETINHO DO JOSIAS",
-      "razao": "OSVANIA RODRIGUES MUNIZ",
-      "cidade": "TIANGUA",
-      "pedidos": 1,
-      "quantidade": 14,
-      "hl": 0.85,
-      "peso_kg": 129.16,
-      "pallets": 0.11
-    },
-    {
       "cod": 26822,
       "nome": "SITIO CANUDUS",
       "razao": "ANA PAULA CARNEIRO DA SILVA",
@@ -5800,6 +5789,17 @@
       "hl": 0.85,
       "peso_kg": 169.29,
       "pallets": 0.16
+    },
+    {
+      "cod": 24573,
+      "nome": "DEPOSITO TIMBA",
+      "razao": "WILLIAM DE MOURA SILVA",
+      "cidade": "SOBRAL",
+      "pedidos": 3,
+      "quantidade": 12,
+      "hl": 0.85,
+      "peso_kg": 164.4,
+      "pallets": 0.14
     },
     {
       "cod": 9052,
@@ -5824,17 +5824,6 @@
       "pallets": 0.15
     },
     {
-      "cod": 24659,
-      "nome": "KINAS BAR",
-      "razao": "ANTONIO MARCOS FERREIRA DA SILVA",
-      "cidade": "CHAVAL",
-      "pedidos": 3,
-      "quantidade": 22,
-      "hl": 0.83,
-      "peso_kg": 195.78,
-      "pallets": 0.16
-    },
-    {
       "cod": 24012,
       "nome": "JUNIOR DELIVERY",
       "razao": "GERARDO ARAUJO XIMENES",
@@ -5844,6 +5833,17 @@
       "hl": 0.83,
       "peso_kg": 164.9,
       "pallets": 0.13
+    },
+    {
+      "cod": 24659,
+      "nome": "KINAS BAR",
+      "razao": "ANTONIO MARCOS FERREIRA DA SILVA",
+      "cidade": "CHAVAL",
+      "pedidos": 3,
+      "quantidade": 22,
+      "hl": 0.83,
+      "peso_kg": 195.78,
+      "pallets": 0.16
     },
     {
       "cod": 14310,
@@ -6770,17 +6770,6 @@
       "pallets": 0.06
     },
     {
-      "cod": 12578,
-      "nome": "RESTAURANTE DADE",
-      "razao": "MARIA DA SOLIDADE FERREIRA AGUIAR",
-      "cidade": "SOBRAL",
-      "pedidos": 2,
-      "quantidade": 8,
-      "hl": 0.56,
-      "peso_kg": 61.52,
-      "pallets": 0.06
-    },
-    {
       "cod": 13688,
       "nome": "RESTAURANTE O BEBETO",
       "razao": "JOSE ELIBERTON DA SILVA",
@@ -6792,15 +6781,15 @@
       "pallets": 0.09
     },
     {
-      "cod": 29225,
-      "nome": "RAINHA BEM AQUI",
-      "razao": "J. V. M. COMERCIO DE ALIMENTOS E BEBIDAS",
+      "cod": 12578,
+      "nome": "RESTAURANTE DADE",
+      "razao": "MARIA DA SOLIDADE FERREIRA AGUIAR",
       "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 11,
+      "pedidos": 2,
+      "quantidade": 8,
       "hl": 0.56,
-      "peso_kg": 78.38,
-      "pallets": 0.07
+      "peso_kg": 61.52,
+      "pallets": 0.06
     },
     {
       "cod": 15265,
@@ -6812,6 +6801,17 @@
       "hl": 0.56,
       "peso_kg": 98.3,
       "pallets": 0.08
+    },
+    {
+      "cod": 29225,
+      "nome": "RAINHA BEM AQUI",
+      "razao": "J. V. M. COMERCIO DE ALIMENTOS E BEBIDAS",
+      "cidade": "SOBRAL",
+      "pedidos": 1,
+      "quantidade": 11,
+      "hl": 0.56,
+      "peso_kg": 78.38,
+      "pallets": 0.07
     },
     {
       "cod": 5129,
@@ -7309,15 +7309,15 @@
       "pallets": 0.07
     },
     {
-      "cod": 13728,
-      "nome": "KIOSKI TROPICAL",
-      "razao": "JOSE REINALDO DE ARAUJO",
-      "cidade": "CAMOCIM",
-      "pedidos": 1,
-      "quantidade": 8,
+      "cod": 14326,
+      "nome": "BOTECO DO MOREIRA",
+      "razao": "ANTONIO MOREIRA GONCALVES",
+      "cidade": "PACUJA",
+      "pedidos": 2,
+      "quantidade": 11,
       "hl": 0.46,
-      "peso_kg": 74.79,
-      "pallets": 0.06
+      "peso_kg": 148.75,
+      "pallets": 0.13
     },
     {
       "cod": 8618,
@@ -7353,15 +7353,15 @@
       "pallets": 0.07
     },
     {
-      "cod": 14326,
-      "nome": "BOTECO DO MOREIRA",
-      "razao": "ANTONIO MOREIRA GONCALVES",
-      "cidade": "PACUJA",
-      "pedidos": 2,
-      "quantidade": 11,
+      "cod": 13728,
+      "nome": "KIOSKI TROPICAL",
+      "razao": "JOSE REINALDO DE ARAUJO",
+      "cidade": "CAMOCIM",
+      "pedidos": 1,
+      "quantidade": 8,
       "hl": 0.46,
-      "peso_kg": 148.75,
-      "pallets": 0.13
+      "peso_kg": 74.79,
+      "pallets": 0.06
     },
     {
       "cod": 66630,
@@ -7419,6 +7419,17 @@
       "pallets": 0.07
     },
     {
+      "cod": 29327,
+      "nome": "CLUBE PE DE MANGA",
+      "razao": "ANTONIO JONH RODRIGUES DE OLIVEIRA",
+      "cidade": "SAO BENEDITO",
+      "pedidos": 1,
+      "quantidade": 9,
+      "hl": 0.44,
+      "peso_kg": 79.76,
+      "pallets": 0.07
+    },
+    {
       "cod": 25778,
       "nome": "BAR SR CARLOS",
       "razao": "CARLOS COSTA MELO",
@@ -7441,17 +7452,6 @@
       "pallets": 0.06
     },
     {
-      "cod": 15618,
-      "nome": "MERCADINHO SANTO EXP",
-      "razao": "RAIMUNDO OSMAR DA SILVA NETO",
-      "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 5,
-      "hl": 0.44,
-      "peso_kg": 86.34,
-      "pallets": 0.07
-    },
-    {
       "cod": 27269,
       "nome": "REST E PIZZA MARCO",
       "razao": "MARCOS GOMES DA COSTA",
@@ -7463,14 +7463,14 @@
       "pallets": 0.07
     },
     {
-      "cod": 29327,
-      "nome": "CLUBE PE DE MANGA",
-      "razao": "ANTONIO JONH RODRIGUES DE OLIVEIRA",
-      "cidade": "SAO BENEDITO",
+      "cod": 15618,
+      "nome": "MERCADINHO SANTO EXP",
+      "razao": "RAIMUNDO OSMAR DA SILVA NETO",
+      "cidade": "SOBRAL",
       "pedidos": 1,
-      "quantidade": 9,
+      "quantidade": 5,
       "hl": 0.44,
-      "peso_kg": 79.76,
+      "peso_kg": 86.34,
       "pallets": 0.07
     },
     {
@@ -7562,17 +7562,6 @@
       "pallets": 0.07
     },
     {
-      "cod": 4321,
-      "nome": "CALCADA DA FAMA AD",
-      "razao": "CRISPIM LOPES FREIRE NETO",
-      "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 6,
-      "hl": 0.42,
-      "peso_kg": 82.8,
-      "pallets": 0.07
-    },
-    {
       "cod": 25269,
       "nome": "COMERCIAL SUPER MAX",
       "razao": "COMERCIAL SUPER MAX LTDA",
@@ -7606,6 +7595,17 @@
       "pallets": 0.06
     },
     {
+      "cod": 4321,
+      "nome": "CALCADA DA FAMA AD",
+      "razao": "CRISPIM LOPES FREIRE NETO",
+      "cidade": "SOBRAL",
+      "pedidos": 1,
+      "quantidade": 6,
+      "hl": 0.42,
+      "peso_kg": 82.8,
+      "pallets": 0.07
+    },
+    {
       "cod": 28394,
       "nome": "FAST MARKET",
       "razao": "D F SUPERMERCADO LTDA",
@@ -7625,17 +7625,6 @@
       "quantidade": 7,
       "hl": 0.41,
       "peso_kg": 68.7,
-      "pallets": 0.05
-    },
-    {
-      "cod": 15224,
-      "nome": "MERC DA FAMILIA",
-      "razao": "ELTON SORIANO DA SILVA",
-      "cidade": "TIANGUA",
-      "pedidos": 1,
-      "quantidade": 9,
-      "hl": 0.41,
-      "peso_kg": 64.3,
       "pallets": 0.05
     },
     {
@@ -7670,6 +7659,17 @@
       "hl": 0.41,
       "peso_kg": 82.99,
       "pallets": 0.07
+    },
+    {
+      "cod": 15224,
+      "nome": "MERC DA FAMILIA",
+      "razao": "ELTON SORIANO DA SILVA",
+      "cidade": "TIANGUA",
+      "pedidos": 1,
+      "quantidade": 9,
+      "hl": 0.41,
+      "peso_kg": 64.3,
+      "pallets": 0.05
     },
     {
       "cod": 11024,
@@ -7925,17 +7925,6 @@
       "pallets": 0.06
     },
     {
-      "cod": 28620,
-      "nome": "SABOR NORDESTINO",
-      "razao": "DEMOUTIEZ DOS SANTOS",
-      "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 6,
-      "hl": 0.35,
-      "peso_kg": 57.79,
-      "pallets": 0.05
-    },
-    {
       "cod": 25959,
       "nome": "BAR DO JOAO",
       "razao": "JOAO SILVA DE OLIVEIRA",
@@ -7945,6 +7934,17 @@
       "hl": 0.35,
       "peso_kg": 69.0,
       "pallets": 0.06
+    },
+    {
+      "cod": 28620,
+      "nome": "SABOR NORDESTINO",
+      "razao": "DEMOUTIEZ DOS SANTOS",
+      "cidade": "SOBRAL",
+      "pedidos": 1,
+      "quantidade": 6,
+      "hl": 0.35,
+      "peso_kg": 57.79,
+      "pallets": 0.05
     },
     {
       "cod": 25390,
@@ -8376,17 +8376,6 @@
       "pallets": 0.03
     },
     {
-      "cod": 26815,
-      "nome": "SKINAS BAR DA CLEIDE",
-      "razao": "CILEIDE FELIX DA SILVA",
-      "cidade": "ALCANTARAS",
-      "pedidos": 1,
-      "quantidade": 10,
-      "hl": 0.24,
-      "peso_kg": 34.36,
-      "pallets": 0.04
-    },
-    {
       "cod": 26934,
       "nome": "CHURRASCA EBEMEZER",
       "razao": "PAULO SERGIO GADELHA CAVALCANTE",
@@ -8395,6 +8384,17 @@
       "quantidade": 7,
       "hl": 0.24,
       "peso_kg": 39.19,
+      "pallets": 0.04
+    },
+    {
+      "cod": 26815,
+      "nome": "SKINAS BAR DA CLEIDE",
+      "razao": "CILEIDE FELIX DA SILVA",
+      "cidade": "ALCANTARAS",
+      "pedidos": 1,
+      "quantidade": 10,
+      "hl": 0.24,
+      "peso_kg": 34.36,
       "pallets": 0.04
     },
     {
@@ -8420,6 +8420,28 @@
       "pallets": 0.04
     },
     {
+      "cod": 66627,
+      "nome": "BOTECO DO DENIS",
+      "razao": "FRANCISCO DENIS DE SOUSA",
+      "cidade": "SOBRAL",
+      "pedidos": 1,
+      "quantidade": 5,
+      "hl": 0.23,
+      "peso_kg": 43.96,
+      "pallets": 0.04
+    },
+    {
+      "cod": 17240,
+      "nome": "PINTAR PRINT",
+      "razao": "EDNILTON FERREIRA OLIVEIRA",
+      "cidade": "CHAVAL",
+      "pedidos": 1,
+      "quantidade": 5,
+      "hl": 0.23,
+      "peso_kg": 44.46,
+      "pallets": 0.04
+    },
+    {
       "cod": 1707,
       "nome": "BAR CHUR O BAIANO",
       "razao": "ANANIAS BARROS DOS SANTOS",
@@ -8442,17 +8464,6 @@
       "pallets": 0.03
     },
     {
-      "cod": 66627,
-      "nome": "BOTECO DO DENIS",
-      "razao": "FRANCISCO DENIS DE SOUSA",
-      "cidade": "SOBRAL",
-      "pedidos": 1,
-      "quantidade": 5,
-      "hl": 0.23,
-      "peso_kg": 43.96,
-      "pallets": 0.04
-    },
-    {
       "cod": 28327,
       "nome": "ALBECI MENEZES",
       "razao": "ALBECI JOSE MENEZES FILHO",
@@ -8462,17 +8473,6 @@
       "hl": 0.23,
       "peso_kg": 24.6,
       "pallets": 0.02
-    },
-    {
-      "cod": 17240,
-      "nome": "PINTAR PRINT",
-      "razao": "EDNILTON FERREIRA OLIVEIRA",
-      "cidade": "CHAVAL",
-      "pedidos": 1,
-      "quantidade": 5,
-      "hl": 0.23,
-      "peso_kg": 44.46,
-      "pallets": 0.04
     },
     {
       "cod": 4156,
@@ -17410,7 +17410,7 @@
       "cidade": "ALCANTARAS",
       "total_pedidos": 1,
       "total_hl": 1.04,
-      "total_peso_kg": 184.3,
+      "total_peso_kg": 184.29,
       "total_pallets": 0.15,
       "total_quantidade": 18,
       "total_itens_distintos": 8,
@@ -17489,7 +17489,7 @@
           "tipo_movimento": "VENDA",
           "operacao": "VENDA DE PRODUTOS",
           "hl": 1.04,
-          "peso_kg": 184.3,
+          "peso_kg": 184.29,
           "pallets": 0.15,
           "quantidade": 18,
           "is_cancelled": false
@@ -66418,7 +66418,7 @@
         {
           "numero_pedido": "3446",
           "data_entrega": "24/09/2026",
-          "situacao_pedido": "MPD_CARREGADO",
+          "situacao_pedido": "ENTREGUE",
           "situacao_atend": "ATENDIDO",
           "tipo_movimento": "VENDA",
           "operacao": "VENDA DE PRODUTOS",

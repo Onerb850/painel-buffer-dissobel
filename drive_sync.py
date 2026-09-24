@@ -2,6 +2,7 @@ import os
 import shutil
 import datetime
 import gdown
+from concurrent.futures import ThreadPoolExecutor
 import process_data
 import generate_dashboard
 
@@ -23,16 +24,50 @@ def sync_from_drive():
     sync_time = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     downloaded_files = []
 
+
     # 1. Tentar download direto por File ID se configurado
-    if BUFFER_FILE_ID and PROD_FILE_ID:
+    if BUFFER_FILE_ID:
         try:
-            gdown.download(id=BUFFER_FILE_ID, output='BUFFER.csv', quiet=True)
-            gdown.download(id=PROD_FILE_ID, output='01.11.csv', quiet=True)
-            downloaded_files = ['BUFFER.csv', '01.11.csv']
+            # Baixa o BUFFER.csv para um arquivo temporário primeiro (evita arquivo corrompido/travado)
+            temp_buf = 'BUFFER_downloading.csv'
+            gdown.download(id=BUFFER_FILE_ID, output=temp_buf, quiet=True)
+            if os.path.exists(temp_buf) and os.path.getsize(temp_buf) > 1000:
+                if os.path.exists('BUFFER.csv'):
+                    try: os.remove('BUFFER.csv')
+                    except: pass
+                shutil.move(temp_buf, 'BUFFER.csv')
+                downloaded_files.append('BUFFER.csv')
+
+            # Verifica se 01.11.csv precisa ser baixado (se não existir ou se foi atualizado no Drive)
+            needs_prod = not os.path.exists('01.11.csv') or os.path.getsize('01.11.csv') < 10000
+            if not needs_prod and PROD_FILE_ID:
+                try:
+                    import requests
+                    import email.utils
+                    prod_url = f'https://drive.google.com/uc?id={PROD_FILE_ID}'
+                    r = requests.head(prod_url, allow_redirects=True, timeout=4)
+                    if 'Last-Modified' in r.headers:
+                        drive_mtime = email.utils.parsedate_to_datetime(r.headers['Last-Modified']).timestamp()
+                        local_mtime = os.path.getmtime('01.11.csv')
+                        if drive_mtime > local_mtime + 5:
+                            print(f"[Drive Sync] Nova versão do 01.11.csv detectada no Drive! Baixando...")
+                            needs_prod = True
+                except Exception:
+                    pass
+
+            if needs_prod and PROD_FILE_ID:
+                temp_prod = '01.11_downloading.csv'
+                gdown.download(id=PROD_FILE_ID, output=temp_prod, quiet=True)
+                if os.path.exists(temp_prod) and os.path.getsize(temp_prod) > 10000:
+                    if os.path.exists('01.11.csv'):
+                        try: os.remove('01.11.csv')
+                        except: pass
+                    shutil.move(temp_prod, '01.11.csv')
+                    downloaded_files.append('01.11.csv')
         except Exception as e:
             return {
                 'success': False,
-                'error': f"Erro ao baixar por File ID: {str(e)}",
+                'error': f"Erro ao baixar do Drive: {str(e)}",
                 'timestamp': sync_time
             }
 
