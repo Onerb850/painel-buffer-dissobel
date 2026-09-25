@@ -239,10 +239,11 @@ def run_process(base_dir='.'):
             'pedidos': orders
         }
 
-        # Data de entrega e data de atualização dinâmicas
+        # Data de entrega e data de atualização dinâmicas (horário oficial de Brasília UTC-3)
     datas_entrega = [str(d).strip() for d in df_atendido['Data entrega'].dropna().unique() if str(d).strip()]
     data_entrega_str = ' / '.join(sorted(datas_entrega)) if datas_entrega else 'Não informada'
-    ultima_atualizacao_str = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    tz_brasilia = datetime.timezone(datetime.timedelta(hours=-3))
+    ultima_atualizacao_str = datetime.datetime.now(tz_brasilia).strftime('%d/%m/%Y %H:%M:%S')
 
     data = {
         'summary': {

@@ -189,6 +189,11 @@ def run_generate():
       background: #b91c1c;
     }}
 
+    .sync-toast.toast-info {{
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }}
+
     @keyframes slideUp {{
       from {{ transform: translateY(20px); opacity: 0; }}
       to {{ transform: translateY(0); opacity: 1; }}
@@ -1502,8 +1507,33 @@ def run_generate():
 
         btn.disabled = true;
         btn.classList.add('syncing');
-        text.textContent = 'Puxando do Drive...';
+        text.textContent = 'Verificando...';
 
+        // 1. Se estiver rodando via HTTP (Vercel ou servidor local), verifica se ha dados mais novos publicados
+        if (window.location.protocol.startsWith('http')) {{
+          try {{
+            const resData = await fetch('/data.json?_t=' + Date.now());
+            if (resData.ok) {{
+              const freshDados = await resData.json();
+              const srvTime = freshDados.summary?.ultima_atualizacao;
+              const curTime = DADOS.summary?.ultima_atualizacao;
+              if (srvTime && curTime && srvTime !== curTime) {{
+                Object.assign(DADOS, freshDados);
+                this.renderHero(DADOS);
+                this.renderKPIs(DADOS);
+                this.renderTables(DADOS);
+                this.initClientSearch(DADOS);
+                this.showToast('✅ Painel sincronizado com a versao mais recente (' + srvTime + ')!', 'success');
+                btn.disabled = false;
+                btn.classList.remove('syncing');
+                text.textContent = 'Atualizar Dados';
+                return;
+              }}
+            }}
+          }} catch(e) {{}}
+        }}
+
+        // 2. Tenta acionar endpoint de sincronizacao ativa do Google Drive
         try {{
           const res = await fetch('/api/sync', {{ method: 'POST' }});
           let data = null;
@@ -1512,15 +1542,16 @@ def run_generate():
           if (res.ok && data && data.success) {{
             this.showToast('✅ ' + (data.message || 'Dados atualizados com sucesso do Google Drive!'), 'success');
             setTimeout(() => window.location.reload(), 1200);
+            return;
+          }} else if (res.status === 404) {{
+            this.showToast('ℹ️ O painel esta online em modo estatico ultra-rapido. Para puxar novas planilhas do Drive, execute <strong>Publicar_no_Vercel.bat</strong> ou <strong>Atualizar_e_Abrir_Dashboard.bat</strong>.', 'info');
           }} else {{
-            const errMsg = (data && data.error) ? data.error : 'O servidor demorou para responder ou encontrou um erro. Tente novamente em instantes.';
+            const errMsg = (data && data.error) ? data.error : 'O servidor demorou para responder. Tente novamente em instantes.';
             this.showToast('⚠️ ' + errMsg, 'error');
-            btn.disabled = false;
-            btn.classList.remove('syncing');
-            text.textContent = 'Atualizar Dados';
           }}
         }} catch (err) {{
-          this.showToast('⚠️ Falha de comunicação com o servidor. Tente novamente.', 'error');
+          this.showToast('ℹ️ Para sincronizar arquivos do Google Drive: execute <strong>Atualizar_e_Abrir_Dashboard.bat</strong> ou <strong>Publicar_no_Vercel.bat</strong> no seu computador.', 'info');
+        }} finally {{
           btn.disabled = false;
           btn.classList.remove('syncing');
           text.textContent = 'Atualizar Dados';

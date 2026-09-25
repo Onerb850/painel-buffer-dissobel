@@ -21,7 +21,8 @@ def sync_from_drive():
     """
     Baixa os arquivos BUFFER.csv e 01.11.csv do Google Drive e reprocessa o dashboard.
     """
-    sync_time = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+    tz_brasilia = datetime.timezone(datetime.timedelta(hours=-3))
+    sync_time = datetime.datetime.now(tz_brasilia).strftime('%d/%m/%Y %H:%M:%S')
     downloaded_files = []
 
 
